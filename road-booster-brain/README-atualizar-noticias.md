@@ -1,14 +1,35 @@
-# Atualizar Notícias
+# Preencher / Atualizar Notícias
 
-Copie o prompt abaixo e envie para a IA quando quiser incluir novos artigos ou notícias do mercado tech.
+Este arquivo contém o prompt padrão para ser enviado à IA quando você quiser **injetar notícias** em um repositório vazio ou atualizar as notícias atuais na Central.
+
+Copie o prompt abaixo e envie para a IA:
 
 ---
-**PROMPT:**
 
-Aja como um Curador de Tecnologia e adicione as notícias mais recentes do mercado ao meu projeto, com base no arquivo `road-booster-center/script.js`.
+**PROMPT PARA A IA:**
 
-**Instruções:**
-1. Leia a estrutura do arquivo e da variável que armazena notícias (ou crie se necessário) e as fontes verificadas mencionadas no README do projeto (ex: Microsoft DevBlogs, AWS Blog, The New Stack, etc.).
-2. Busque 3 a 5 notícias recentes de grande impacto para Back-end, Front-end ou Cloud.
-3. Extraia o título, resumo de 2 linhas, impacto na trilha e o link fonte.
-4. Como o projeto usa HTML puro/JS, formate as notícias prontas em código HTML/JS (ou JSON se houver um array de `newsItems`) para eu apenas colar no `script.js`.
+Aja como um Editor-Chefe de um grande portal de tecnologia (como The Verge ou TechCrunch). O usuário possui uma plataforma técnica de roadmaps chamada `road-booster` que possui uma barra de "Notícias Recentes" no rodapé e uma central de alertas. 
+
+O repositório está limpo. Sua tarefa é popular a variável global `newsItems` no arquivo `script.js` com notícias REAIS e muito recentes sobre tecnologia, frameworks, demissões de big techs, novas versões de linguagens ou tendências (IA, Web3, Cloud).
+
+### REGRAS PARA CRIAÇÃO DE NOTÍCIAS:
+
+1. **Quantidade e Impacto:**
+   - Crie exatamente entre 5 a 8 notícias.
+   - O foco deve ser o impacto na carreira do desenvolvedor (ex: "React 19 é lançado: o que muda para o Frontend?", "Nova IA do Google escreve código mais rápido").
+2. **Estrutura do Objeto:**
+   - O array `newsItems` deve seguir exatamente este formato:
+```javascript
+{
+  title: "React 19: Novo Compilador muda o jogo",
+  summary: "A nova versão traz o React Compiler que promete acabar com a necessidade de useMemo e useCallback, alterando a forma como pensamos em otimização no frontend.",
+  imageUrl: "https://picsum.photos/400/200?random=1", // Use uma imagem pública que faça sentido (ou Picsum)
+  link: "https://react.dev/blog" // Link real para a fonte da notícia
+}
+```
+3. **Padrão de Linguagem:**
+   - O `title` deve ter no máximo 60 caracteres.
+   - O `summary` deve ir direto ao ponto técnico e de mercado (2 a 3 linhas curtas).
+
+**Seu Retorno Deve Ser:**
+Apenas o array `newsItems` codificado em JavaScript pronto para ser substituído em `script.js`. Não altere mais nada.
