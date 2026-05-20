@@ -3347,7 +3347,7 @@
               </div>
               <div style="margin-left: 12px; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 6px; background: var(--color-111122); color: var(--color-94a3b8); border: 1px solid var(--color-1e1e3a); display: flex; align-items: center; gap: 6px;">
                 <i data-lucide="clock" style="width: 12px; height: 12px; color: var(--color-3b82f6);"></i>
-                Última vez atualizado em 20/05/2026 - 17:10
+                Última vez atualizado em 20/05/2026 - 17:16
               </div>
             </div>
             <button onclick="toggleTheme()" style="background:transparent; border:none; cursor:pointer; color:var(--color-94a3b8); display:flex; align-items:center; justify-content:center; padding: 8px;">

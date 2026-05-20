@@ -38,8 +38,9 @@ Sua tarefa é gerar o código JavaScript estático no formato exato que a aplica
 
 ### REGRAS DE DESIGN E INJEÇÃO (HTML/CSS/JS):
 
-- **NÃO** altere a lógica de `render()` ou as funções principais do `script.js`. Você deve apenas fornecer os **objetos JavaScript puros** (arrays e dicionários) que o usuário copiará e colará nas variáveis (ex: `trailSubItems`, `roadmaps`, `extraRoadmaps` e os arrays de fases como `mobilePhases`, etc).
-- Siga exatamente este formato para o objeto da fase:
+- **ATENÇÃO MÁXIMA:** Você NÃO deve gerar HTML, CSS ou funções JavaScript. O motor visual (engine) da aplicação já possui todo o CSS e JS para renderizar os "dropboxes" (accordions), os botões, os ícones, os badges e as cores perfeitamente, imitando 100% o design original.
+- O seu único trabalho é **FORNECER OS DADOS** preenchendo RIGOROSAMENTE os arrays abaixo. Se você fornecer os arrays `tools`, `sites` e `resources` corretamente formatados, a engine da aplicação desenhará a seção "Linguagens & Ferramentas", "Sites de Prática" e "Trilha de Estudo" automaticamente!
+- Siga exatamente este formato para o objeto da fase. NUNCA pule ou omita `tools`, `sites` ou `resources`:
 ```javascript
 {
   id: "fundamentos_mobile", label: "01 · Fundamentos", color: "var(--color-6366f1)", dim: "var(--color-1e1b4b22)", icon: "smartphone",
@@ -47,16 +48,24 @@ Sua tarefa é gerar o código JavaScript estático no formato exato que a aplica
     {
       title: "Arquitetura Mobile",
       tagline: "A base de todo aplicativo escalável.",
-      description: "Entender o ciclo de vida do aplicativo, gerenciamento de estado e arquiteturas como MVVM e Clean Architecture.",
-      tools: [ { name: "Swift", why: "Padrão Apple" } ],
-      sites: [ { label: "iOS Docs", url: "...", type: "docs" } ],
-      resources: [ { label: "Curso Dev", url: "...", type: "youtube" } ]
+      description: "Entender o ciclo de vida do aplicativo, gerenciamento de estado e arquiteturas como MVVM e Clean Architecture. **Micro Solução Sugerida:** Crie uma tela simples com gerenciamento de estado isolado.",
+      tools: [ 
+        { name: "Swift", why: "Linguagem Padrão Apple" },
+        { name: "Kotlin", why: "Linguagem Padrão Android" }
+      ],
+      sites: [ 
+        { label: "iOS Docs", url: "https://developer.apple.com/", type: "docs" },
+        { label: "Android Codelabs", url: "https://developer.android.com/", type: "practice" }
+      ],
+      resources: [ 
+        { label: "Curso Dev Mobile", url: "https://youtube.com/...", type: "youtube" }
+      ]
     }
-    // ... mínimo de 2 topics
+    // ... mínimo de 2 topics por fase, SEMPRE com tools, sites e resources preenchidos!
   ]
 }
 ```
 - Cores: Utilize a paleta dark theme em CSS vars já adotada no projeto, como `var(--color-111122)` ou tons de primary (ex: `#3b82f6` ou `var(--color-3b82f6)`).
 
 **Seu Retorno Deve Ser:**
-O trecho de código exato que deve ser colado em `script.js` para registrar a nova trilha, as variáveis das fases (`phases`) populadas com todo o conhecimento e a atualização do menu `trailSubItems`.
+O trecho de código exato que deve ser colado em `script.js` para registrar a nova trilha, as variáveis das fases (`phases`) populadas com todo o conhecimento e a atualização do menu `trailSubItems`. NÃO INVENTE HTML! Apenas retorne as arrays.
