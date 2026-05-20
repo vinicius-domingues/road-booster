@@ -1976,18 +1976,83 @@
         id: "fundamentos-seg", label: "01 · Fundamentos", color: "var(--color-dc2626)", dim: "var(--color-1f080822)", icon: "shield",
         topics: [
           {
-            title: "Redes e Protocolos", tagline: "Entenda a base da comunicação.", description: "TCP/IP, UDP, DNS, HTTP/HTTPS.", tools: [], sites: [], resources: []
+            title: "Redes e Protocolos", 
+            tagline: "Entenda a base da comunicação.", 
+            description: "TCP/IP, UDP, DNS, HTTP/HTTPS. Como a internet trafega dados é o alicerce para saber como invadi-la (ou protegê-la). **Micro Solução Sugerida:** Analise pacotes da sua própria rede usando Wireshark e poste no LinkedIn as conclusões sobre protocolos inseguros.", 
+            tools: [{ name: "Wireshark", why: "Análise de Tráfego" }, { name: "Nmap", why: "Mapeamento" }], 
+            sites: [{ label: "PortSwigger", url: "https://portswigger.net/", type: "docs" }], 
+            resources: [{ label: "Fundamentos de Redes", url: "https://youtube.com", type: "youtube" }]
           },
           {
-            title: "Criptografia Básica", tagline: "Proteção de dados em repouso e trânsito.", description: "Hashes, simétrica, assimétrica, TLS.", tools: [], sites: [], resources: []
+            title: "Criptografia Aplicada", 
+            tagline: "Proteção de dados em repouso e trânsito.", 
+            description: "Diferença entre Hashes (SHA), Criptografia Simétrica (AES) e Assimétrica (RSA). Implementação de TLS/SSL em aplicações web. **Micro Solução Sugerida:** Crie uma API simples que hashea senhas com Bcrypt e valide contra timing attacks.", 
+            tools: [{ name: "Bcrypt", why: "Hash seguro" }, { name: "OpenSSL", why: "Certificados" }], 
+            sites: [{ label: "OWASP Cheatsheet", url: "https://cheatsheetseries.owasp.org/", type: "docs" }], 
+            resources: [{ label: "Computerphile Crypto", url: "https://youtube.com", type: "youtube" }]
           }
         ]
       },
       {
-        id: "owasp-seg", label: "02 · OWASP Top 10", color: "var(--color-f97316)", dim: "var(--color-1c110822)", icon: "alert-triangle",
+        id: "ofensiva-seg", label: "02 · Segurança Ofensiva", color: "var(--color-f97316)", dim: "var(--color-1c110822)", icon: "skull",
         topics: [
           {
-            title: "Injeções e XSS", tagline: "As falhas mais comuns.", description: "SQLi, NoSQLi, Cross-Site Scripting.", tools: [], sites: [], resources: []
+            title: "Reconhecimento & Footprinting", 
+            tagline: "A arte de coletar informações.", 
+            description: "OSINT, DNS Enum, Port Scanning. Identificar a superfície de ataque antes de explorar. **Micro Solução Sugerida:** Crie um script em Python que automatiza o mapeamento de subdomínios de um domínio público usando crt.sh.", 
+            tools: [{ name: "Python", why: "Automação" }, { name: "Shodan", why: "IoT Search" }], 
+            sites: [{ label: "HackTheBox", url: "https://www.hackthebox.com/", type: "practice" }], 
+            resources: [{ label: "Curso OSINT", url: "https://youtube.com", type: "course" }]
+          },
+          {
+            title: "Exploração Web (OWASP)", 
+            tagline: "Hackeando aplicações modernas.", 
+            description: "SQL Injection, XSS, CSRF e Broken Access Control. Como achar e explorar brechas web. **Micro Solução Sugerida:** Suba a aplicação DVWA via Docker e explore as falhas no nível 'Medium', documentando o processo.", 
+            tools: [{ name: "Burp Suite", why: "Proxy de Interceptação" }, { name: "SQLMap", why: "SQLi automatizado" }], 
+            sites: [{ label: "TryHackMe", url: "https://tryhackme.com/", type: "practice" }], 
+            resources: [{ label: "Guia OWASP Top 10", url: "https://owasp.org/Top10/", type: "docs" }]
+          }
+        ]
+      },
+      {
+        id: "defensiva-seg", label: "03 · Segurança Defensiva", color: "var(--color-3b82f6)", dim: "var(--color-0f172a22)", icon: "shield-check",
+        topics: [
+          {
+            title: "Firewalls e WAFs", 
+            tagline: "O primeiro muro do castelo.", 
+            description: "Regras de bloqueio, WAFs (Web Application Firewalls) e mitigação de DDoS. **Micro Solução Sugerida:** Configure um WAF open-source (ModSecurity) na frente de um Nginx e bloqueie tentativas de SQLi.", 
+            tools: [{ name: "ModSecurity", why: "WAF Open Source" }, { name: "Cloudflare", why: "Proteção DDoS" }], 
+            sites: [{ label: "AWS Shield Docs", url: "https://aws.amazon.com/shield/", type: "docs" }], 
+            resources: [{ label: "Cloudflare WAF Guide", url: "https://youtube.com", type: "youtube" }]
+          },
+          {
+            title: "SIEM & Monitoramento", 
+            tagline: "Enxergando os atacantes.", 
+            description: "Centralização de logs e alertas de segurança em tempo real. **Micro Solução Sugerida:** Implante o Splunk ou ELK localmente, envie logs de autenticação via Syslog e crie um alerta para brute force.", 
+            tools: [{ name: "Splunk", why: "SIEM" }, { name: "Elastic Stack", why: "Log Analytics" }], 
+            sites: [{ label: "Splunk BOTS", url: "https://splunk.com", type: "practice" }], 
+            resources: [{ label: "Introdução ao SIEM", url: "https://youtube.com", type: "youtube" }]
+          }
+        ]
+      },
+      {
+        id: "devsecops", label: "04 · DevSecOps", color: "var(--color-a855f7)", dim: "var(--color-2d1b3f22)", icon: "workflow",
+        topics: [
+          {
+            title: "SAST, DAST e IAST", 
+            tagline: "Segurança nativa na esteira.", 
+            description: "Teste Estático e Dinâmico de Código. Injetando automação de segurança no pipeline CI/CD. **Micro Solução Sugerida:** Configure uma Action no GitHub que rode o SonarQube ou Snyk a cada Pull Request e bloqueie código vulnerável.", 
+            tools: [{ name: "Snyk", why: "Análise de Dependências" }, { name: "SonarQube", why: "SAST" }], 
+            sites: [{ label: "Snyk Learn", url: "https://learn.snyk.io/", type: "docs" }], 
+            resources: [{ label: "DevSecOps Pathway", url: "https://youtube.com", type: "course" }]
+          },
+          {
+            title: "Container Security", 
+            tagline: "Hackers nas nuvens.", 
+            description: "Protegendo imagens Docker e clusters Kubernetes de invasões e escalonamento de privilégios. **Micro Solução Sugerida:** Crie um Dockerfile, escaneie com o Trivy, corrija as vulnerabilidades CVEs apontadas e mostre o antes/depois no LinkedIn.", 
+            tools: [{ name: "Trivy", why: "Container Scan" }, { name: "Docker", why: "Containers" }], 
+            sites: [{ label: "K8s Security Docs", url: "https://kubernetes.io/docs/concepts/security/", type: "docs" }], 
+            resources: [{ label: "Trivy Tutorial", url: "https://youtube.com", type: "youtube" }]
           }
         ]
       }
@@ -1998,10 +2063,83 @@
         id: "fundamentos-bi", label: "01 · Fundamentos de Dados", color: "var(--color-f59e0b)", dim: "var(--color-1c141022)", icon: "bar-chart-3",
         topics: [
           {
-            title: "Modelagem Dimensional", tagline: "Star schema e Snowflake.", description: "Fatos, dimensões, granularidade.", tools: [], sites: [], resources: []
+            title: "Bancos Relacionais vs NoSQL", 
+            tagline: "Onde o dado nasce.", 
+            description: "Diferenças de escalabilidade, transações ACID e casos de uso entre SQL e NoSQL. **Micro Solução Sugerida:** Modele um banco para e-commerce no PostgreSQL e a parte de catálogo de produtos no MongoDB, e escreva sobre a escolha.", 
+            tools: [{ name: "PostgreSQL", why: "Relacional" }, { name: "MongoDB", why: "Documentos" }], 
+            sites: [{ label: "PostgreSQL Docs", url: "https://www.postgresql.org/docs/", type: "docs" }], 
+            resources: [{ label: "Modelagem de Dados", url: "https://youtube.com", type: "youtube" }]
           },
           {
-            title: "ETL / ELT", tagline: "Movimentação de dados.", description: "Extração, transformação e carga.", tools: [], sites: [], resources: []
+            title: "Modelagem Multidimensional", 
+            tagline: "Preparando dados para análise.", 
+            description: "Diferença entre OLTP e OLAP. Criação de Star Schema e Snowflake Schema (Fatos e Dimensões). **Micro Solução Sugerida:** Converta um banco de dados transacional simples (3FN) em um Star Schema para relatórios e publique no LinkedIn.", 
+            tools: [{ name: "SQL", why: "Consultas OLAP" }, { name: "Draw.io", why: "Modelagem" }], 
+            sites: [{ label: "Kimball Group", url: "https://www.kimballgroup.com/", type: "docs" }], 
+            resources: [{ label: "Star Schema Basics", url: "https://youtube.com", type: "youtube" }]
+          }
+        ]
+      },
+      {
+        id: "pipeline-bi", label: "02 · Pipeline (ETL / ELT)", color: "var(--color-10b981)", dim: "var(--color-06241122)", icon: "arrow-right-left",
+        topics: [
+          {
+            title: "Extração e Carga", 
+            tagline: "Tirando o dado do sistema raiz.", 
+            description: "Padrões de extração (Full vs Incremental) e ferramentas modernas de ingestão de dados. **Micro Solução Sugerida:** Use o Airbyte ou Python para extrair dados de uma API pública (ex: clima) e carregue em um banco local.", 
+            tools: [{ name: "Airbyte", why: "Ingestão Open Source" }, { name: "Python", why: "Scripts custom" }], 
+            sites: [{ label: "Airbyte Docs", url: "https://docs.airbyte.com/", type: "docs" }], 
+            resources: [{ label: "Data Engineering Zoomcamp", url: "https://youtube.com", type: "course" }]
+          },
+          {
+            title: "Transformação com dbt", 
+            tagline: "Engenharia analítica moderna.", 
+            description: "O 'T' do ELT. Uso do dbt (data build tool) para transformar dados diretamente no Data Warehouse usando SQL modular. **Micro Solução Sugerida:** Crie um modelo dbt com testes de qualidade de dados (unicidade, not null) e faça deploy.", 
+            tools: [{ name: "dbt", why: "Transformação" }, { name: "Jinja", why: "Templates SQL" }], 
+            sites: [{ label: "dbt Learn", url: "https://courses.getdbt.com/", type: "practice" }], 
+            resources: [{ label: "Intro ao dbt", url: "https://youtube.com", type: "youtube" }]
+          }
+        ]
+      },
+      {
+        id: "storage-bi", label: "03 · Armazenamento", color: "var(--color-6366f1)", dim: "var(--color-0f112a22)", icon: "database",
+        topics: [
+          {
+            title: "Data Warehouse", 
+            tagline: "O cérebro analítico da empresa.", 
+            description: "Armazenamento colunar estruturado, otimizado para consultas complexas em larga escala. **Micro Solução Sugerida:** Crie um projeto no Google Cloud (Free Tier) e rode queries analíticas no BigQuery usando dados públicos.", 
+            tools: [{ name: "BigQuery", why: "Serverless DW" }, { name: "Snowflake", why: "Cloud Data Platform" }], 
+            sites: [{ label: "BigQuery Sandbox", url: "https://cloud.google.com/bigquery", type: "practice" }], 
+            resources: [{ label: "GCP BigQuery Tutorial", url: "https://youtube.com", type: "youtube" }]
+          },
+          {
+            title: "Data Lakes e Lakehouses", 
+            tagline: "Dados brutos e semi-estruturados.", 
+            description: "A evolução do Data Lake: unindo a flexibilidade do Lake com as garantias ACID do Warehouse (Delta Lake). **Micro Solução Sugerida:** Utilize o Databricks Community Edition para processar um arquivo Parquet gigante com PySpark.", 
+            tools: [{ name: "Databricks", why: "Lakehouse" }, { name: "PySpark", why: "Big Data Processing" }], 
+            sites: [{ label: "Databricks Community", url: "https://community.cloud.databricks.com/", type: "practice" }], 
+            resources: [{ label: "Lakehouse Architecture", url: "https://youtube.com", type: "youtube" }]
+          }
+        ]
+      },
+      {
+        id: "visualizacao-bi", label: "04 · Visualização e Dashboards", color: "var(--color-ec4899)", dim: "var(--color-2d0c1f22)", icon: "pie-chart",
+        topics: [
+          {
+            title: "Ferramentas de BI", 
+            tagline: "Entregando valor para o negócio.", 
+            description: "Criação de dashboards interativos, DAX, Power Query e relatórios self-service. **Micro Solução Sugerida:** Conecte o Power BI Desktop na sua base modelada e crie um painel de vendas com pelo menos 3 KPIs visuais.", 
+            tools: [{ name: "Power BI", why: "Líder de mercado" }, { name: "Metabase", why: "Open Source BI" }], 
+            sites: [{ label: "Microsoft Learn Power BI", url: "https://learn.microsoft.com/en-us/power-bi/", type: "docs" }], 
+            resources: [{ label: "Power BI Completo", url: "https://youtube.com", type: "course" }]
+          },
+          {
+            title: "Storytelling com Dados", 
+            tagline: "O painel não fala sozinho.", 
+            description: "Como escolher o gráfico certo para a pergunta certa, evitando dashboards poluídos e inúteis. **Micro Solução Sugerida:** Faça um antes e depois de um gráfico de pizza confuso, transformando-o num gráfico de barras com cor de destaque.", 
+            tools: [{ name: "Figma", why: "Prototipação" }, { name: "Tableau", why: "Data Viz Visual" }], 
+            sites: [{ label: "Storytelling with Data", url: "https://www.storytellingwithdata.com/", type: "docs" }], 
+            resources: [{ label: "Como apresentar dados", url: "https://youtube.com", type: "youtube" }]
           }
         ]
       }
@@ -2009,10 +2147,86 @@
 
     const startupPhases = [
       {
-        id: "fundamentos-startup", label: "01 · Validação", color: "var(--color-a855f7)", dim: "var(--color-1a0d2e22)", icon: "rocket",
+        id: "fundamentos-startup", label: "01 · Ideação & Validação", color: "var(--color-a855f7)", dim: "var(--color-1a0d2e22)", icon: "rocket",
         topics: [
           {
-            title: "Lean Startup", tagline: "Construir, medir, aprender.", description: "MVP, pivotar, product-market fit.", tools: [], sites: [], resources: []
+            title: "Lean Startup & MVP", 
+            tagline: "Construir, medir, aprender.", 
+            description: "A essência de testar hipóteses rápido. Entenda a diferença entre um MVP real e um produto pela metade. **Micro Solução Sugerida:** Crie uma Landing Page simples no Carrd ou Typedream com um formulário de e-mail e poste no LinkedIn para testar interesse antes de codar a aplicação.", 
+            tools: [{ name: "Carrd", why: "No-Code LP" }, { name: "Typeform", why: "Coleta Leads" }], 
+            sites: [{ label: "Y Combinator Library", url: "https://www.ycombinator.com/library", type: "docs" }], 
+            resources: [{ label: "Como construir um MVP", url: "https://youtube.com", type: "youtube" }]
+          },
+          {
+            title: "Customer Development", 
+            tagline: "Ame o problema, não a solução.", 
+            description: "Como conduzir entrevistas com usuários sem induzir a resposta (The Mom Test). Entender a dor real antes da engenharia. **Micro Solução Sugerida:** Faça 5 entrevistas gravadas com potenciais usuários sobre uma dor e escreva um resumo dos aprendizados no seu repositório de produto.", 
+            tools: [{ name: "Miro", why: "Brainstorming" }, { name: "Notion", why: "Doc de Produto" }], 
+            sites: [{ label: "The Mom Test Basics", url: "http://momtestbook.com/", type: "docs" }], 
+            resources: [{ label: "Customer Discovery", url: "https://youtube.com", type: "course" }]
+          }
+        ]
+      },
+      {
+        id: "produto-startup", label: "02 · Produto & Métricas", color: "var(--color-3b82f6)", dim: "var(--color-0f172a22)", icon: "layers",
+        topics: [
+          {
+            title: "Prototipação Ágil", 
+            tagline: "Validação visual antes do código.", 
+            description: "Criar interfaces navegáveis e testar usabilidade (UX) rapidamente. **Micro Solução Sugerida:** Desenhe 3 telas chave de um SaaS no Figma, crie a navegação entre elas e grave um vídeo curto demonstrando a ideia.", 
+            tools: [{ name: "Figma", why: "Prototipação" }, { name: "Balsamiq", why: "Wireframes rápidos" }], 
+            sites: [{ label: "Figma Community", url: "https://www.figma.com/community", type: "practice" }], 
+            resources: [{ label: "Figma para Devs", url: "https://youtube.com", type: "youtube" }]
+          },
+          {
+            title: "Métricas de Produto (AARRR)", 
+            tagline: "Pirate Metrics.", 
+            description: "Aquisição, Ativação, Retenção, Receita, Recomendação. Onde focar o esforço de engenharia. **Micro Solução Sugerida:** Configure o PostHog ou Google Analytics num projeto existente e crie um funil de conversão simples do login até a ação principal.", 
+            tools: [{ name: "PostHog", why: "Product Analytics" }, { name: "Google Analytics", why: "Web Analytics" }], 
+            sites: [{ label: "PostHog Docs", url: "https://posthog.com/docs", type: "docs" }], 
+            resources: [{ label: "Métricas de SaaS", url: "https://youtube.com", type: "youtube" }]
+          }
+        ]
+      },
+      {
+        id: "gtm-startup", label: "03 · Go-To-Market", color: "var(--color-f59e0b)", dim: "var(--color-1c141022)", icon: "target",
+        topics: [
+          {
+            title: "Canais de Aquisição", 
+            tagline: "Inbound vs Outbound.", 
+            description: "Estratégias de lançamento (Product Hunt, Newsletters, Cold Email). Como colocar seu produto na frente do cliente. **Micro Solução Sugerida:** Crie um plano de lançamento para o seu side-project e execute um post estratégico no Reddit, Indie Hackers ou LinkedIn.", 
+            tools: [{ name: "Product Hunt", why: "Launch" }, { name: "Apollo", why: "Cold Outreach" }], 
+            sites: [{ label: "Indie Hackers", url: "https://www.indiehackers.com/", type: "site" }], 
+            resources: [{ label: "Estratégia GTM", url: "https://youtube.com", type: "youtube" }]
+          },
+          {
+            title: "SEO e Tráfego", 
+            tagline: "Ganhando o jogo no longo prazo.", 
+            description: "A otimização de motores de busca (Technical SEO, Programmatic SEO, Content). **Micro Solução Sugerida:** Audite sua landing page com o Lighthouse, alcance 100 de pontuação de SEO e inclua tags Open Graph corretas.", 
+            tools: [{ name: "Ahrefs", why: "Análise SEO" }, { name: "Lighthouse", why: "Auditoria Web" }], 
+            sites: [{ label: "Google Search Central", url: "https://developers.google.com/search", type: "docs" }], 
+            resources: [{ label: "Programmatic SEO Basics", url: "https://youtube.com", type: "youtube" }]
+          }
+        ]
+      },
+      {
+        id: "growth-startup", label: "04 · Growth & Escala", color: "var(--color-10b981)", dim: "var(--color-06241122)", icon: "trending-up",
+        topics: [
+          {
+            title: "Product-Led Growth (PLG)", 
+            tagline: "O produto se vende sozinho.", 
+            description: "Estratégias de freemium, viral loops e onboarding que converte. **Micro Solução Sugerida:** Analise o onboarding de 3 SaaS famosos, documente as fricções encontradas e proponha melhorias de UX.", 
+            tools: [{ name: "Stripe", why: "Billing & Freemium" }, { name: "Intercom", why: "Onboarding" }], 
+            sites: [{ label: "OpenView PLG", url: "https://openviewpartners.com/product-led-growth/", type: "site" }], 
+            resources: [{ label: "O que é PLG", url: "https://youtube.com", type: "youtube" }]
+          },
+          {
+            title: "Retenção, Churn e LTV", 
+            tagline: "A saúde financeira do negócio.", 
+            description: "Entender o Custo de Aquisição (CAC) versus o Valor Vitalício do Cliente (LTV). Por que reter é mais barato que adquirir. **Micro Solução Sugerida:** Desenvolva um script SQL que calcule o MRR e a taxa de churn de uma base mockada de assinaturas Stripe.", 
+            tools: [{ name: "SQL", why: "Análise de Churn" }, { name: "Excel/Sheets", why: "Modelagem Financeira" }], 
+            sites: [{ label: "Baremetrics", url: "https://baremetrics.com/academy", type: "docs" }], 
+            resources: [{ label: "Cálculo de CAC e LTV", url: "https://youtube.com", type: "youtube" }]
           }
         ]
       }
@@ -2023,7 +2237,83 @@
         id: "fundamentos-soft", label: "01 · Comunicação", color: "var(--color-22c55e)", dim: "var(--color-0d1f1222)", icon: "messages-square",
         topics: [
           {
-            title: "Comunicação Assertiva", tagline: "Falar e ser entendido.", description: "Clareza, empatia, escuta ativa.", tools: [], sites: [], resources: []
+            title: "Comunicação Assertiva", 
+            tagline: "Falar e ser entendido.", 
+            description: "Clareza, empatia e escuta ativa no trabalho remoto. Evitar o 'Ping-Pong' de mensagens. **Micro Solução Sugerida:** Reescreva a sua última PR (Pull Request) description ou e-mail confuso usando o framework STAR (Situation, Task, Action, Result) e veja a diferença.", 
+            tools: [{ name: "Slack/Teams", why: "Assíncrono" }, { name: "Loom", why: "Vídeos curtos" }], 
+            sites: [{ label: "Remote Work Guides", url: "https://about.gitlab.com/company/culture/all-remote/guide/", type: "docs" }], 
+            resources: [{ label: "Comunicação Assíncrona", url: "https://youtube.com", type: "youtube" }]
+          },
+          {
+            title: "Feedbacks (Radical Candor)", 
+            tagline: "Importar-se pessoalmente, confrontar diretamente.", 
+            description: "Como dar e receber feedbacks difíceis sem soar agressivo ou passivo. **Micro Solução Sugerida:** Peça um feedback construtivo para um colega sênior sobre seu último código e agradeça sem se justificar (exercite a escuta).", 
+            tools: [{ name: "Radical Candor", why: "Framework" }, { name: "1-on-1s", why: "Cerimônia" }], 
+            sites: [{ label: "Radical Candor Book", url: "https://www.radicalcandor.com/", type: "docs" }], 
+            resources: [{ label: "Como dar feedback", url: "https://youtube.com", type: "youtube" }]
+          }
+        ]
+      },
+      {
+        id: "produtividade-soft", label: "02 · Produtividade", color: "var(--color-3b82f6)", dim: "var(--color-0f172a22)", icon: "clock",
+        topics: [
+          {
+            title: "Gestão de Tempo e Foco", 
+            tagline: "Deep Work vs Shallow Work.", 
+            description: "Aprenda a focar ininterruptamente em tarefas cognitivamente exigentes (programar). **Micro Solução Sugerida:** Bloqueie 2 horas na sua agenda de amanhã para 'Deep Work', desligue o Slack/WhatsApp e programe sem nenhuma distração.", 
+            tools: [{ name: "Pomodoro", why: "Técnica de Foco" }, { name: "Timeblocking", why: "Agenda" }], 
+            sites: [{ label: "Cal Newport (Deep Work)", url: "https://calnewport.com/", type: "docs" }], 
+            resources: [{ label: "Resumo Deep Work", url: "https://youtube.com", type: "youtube" }]
+          },
+          {
+            title: "Organização e Autogestão", 
+            tagline: "Tirar da cabeça e colocar no papel.", 
+            description: "Adoção de sistemas como GTD (Getting Things Done) e Second Brain para não esquecer tarefas. **Micro Solução Sugerida:** Crie um Kanban pessoal (Trello/Notion) com To Do, Doing e Done para suas tarefas pessoais e profissionais desta semana.", 
+            tools: [{ name: "Notion", why: "Second Brain" }, { name: "Trello", why: "Kanban Pessoal" }], 
+            sites: [{ label: "Building a Second Brain", url: "https://buildingasecondbrain.com/", type: "docs" }], 
+            resources: [{ label: "Sistema GTD", url: "https://youtube.com", type: "youtube" }]
+          }
+        ]
+      },
+      {
+        id: "lideranca-soft", label: "03 · Liderança Técnica", color: "var(--color-eab308)", dim: "var(--color-1c180822)", icon: "users",
+        topics: [
+          {
+            title: "Liderança por Influência", 
+            tagline: "Liderar sem ter o cargo.", 
+            description: "Como influenciar decisões técnicas de arquitetura ou processos sem ser o chefe. **Micro Solução Sugerida:** Escreva uma RFC (Request for Comments) curta propondo uma pequena melhoria no projeto da sua equipe e apresente aos colegas.", 
+            tools: [{ name: "RFC", why: "Proposta Técnica" }, { name: "Storytelling", why: "Convencimento" }], 
+            sites: [{ label: "Engineering Ladders", url: "https://www.engineeringladders.com/", type: "docs" }], 
+            resources: [{ label: "Staff Engineer Paths", url: "https://youtube.com", type: "youtube" }]
+          },
+          {
+            title: "Code Review Empático", 
+            tagline: "Critique o código, não o dev.", 
+            description: "Como fazer PR reviews que ensinam e não ofendem. Evitar ser um gatekeeper chato. **Micro Solução Sugerida:** Faça um code review detalhado no repositório open-source ou de um colega focando apenas em sugestões de melhoria (com exemplos), sem impor.", 
+            tools: [{ name: "GitHub PRs", why: "Revisão" }, { name: "Conventional Comments", why: "Padrão" }], 
+            sites: [{ label: "Google Code Review Guide", url: "https://google.github.io/eng-practices/review/", type: "docs" }], 
+            resources: [{ label: "Como fazer Code Review", url: "https://youtube.com", type: "youtube" }]
+          }
+        ]
+      },
+      {
+        id: "carreira-soft", label: "04 · Carreira e Mercado", color: "var(--color-ec4899)", dim: "var(--color-2d0c1f22)", icon: "trending-up",
+        topics: [
+          {
+            title: "Posicionamento e Portfólio", 
+            tagline: "Seja encontrado pelas vagas.", 
+            description: "Como usar o LinkedIn ativamente e manter um GitHub atraente (Readme, Commits). **Micro Solução Sugerida:** Refatore a headline do seu LinkedIn e escreva um post curto sobre a micro-solução técnica que você aprendeu nesta semana.", 
+            tools: [{ name: "LinkedIn", why: "Networking" }, { name: "GitHub Profile", why: "Portfólio" }], 
+            sites: [{ label: "LinkedIn Best Practices", url: "https://www.linkedin.com/help", type: "docs" }], 
+            resources: [{ label: "Perfil LinkedIn Atraente", url: "https://youtube.com", type: "youtube" }]
+          },
+          {
+            title: "Entrevistas (Método STAR)", 
+            tagline: "Como vender sua experiência.", 
+            description: "Preparação para entrevistas comportamentais. Situação, Tarefa, Ação e Resultado. **Micro Solução Sugerida:** Escreva 3 histórias da sua carreira usando o modelo STAR para usar na próxima entrevista de emprego.", 
+            tools: [{ name: "STAR Method", why: "Entrevista Comportamental" }, { name: "Mock Interviews", why: "Prática" }], 
+            sites: [{ label: "The STAR Method", url: "https://www.thebalancecareers.com/", type: "docs" }], 
+            resources: [{ label: "Exemplos Entrevista STAR", url: "https://youtube.com", type: "youtube" }]
           }
         ]
       }
@@ -2378,12 +2668,14 @@
 
         if (isOpen) {
           const jobMatches = getTopicJobMatches(topic);
-          const jobMatchesHTML = jobMatches.length > 0 ? `
+          let jobMatchesHTML = '';
+          if (jobMatches.length > 0) {
+            jobMatchesHTML = `
             <div class="job-matches-container">
               <div class="job-matches-header">
                 <i data-lucide="briefcase-business" class="ui-style-2"></i>
                 <span class="job-matches-title">
-                  Vagas pediriam isso (total ${jobMatches.length})
+                  VAGAS PEDIRIAM ISSO (TOTAL ${jobMatches.length})
                 </span>
               </div>
               <div class="ui-style-3">
@@ -2401,7 +2693,19 @@
                 `).join('')}
               </div>
             </div>
-          ` : '';
+            `;
+          } else {
+            jobMatchesHTML = `
+            <div class="job-matches-container" style="opacity: 0.7;">
+              <div class="job-matches-header">
+                <i data-lucide="briefcase-business" class="ui-style-2" style="color: var(--color-475569);"></i>
+                <span class="job-matches-title" style="color: var(--color-64748b);">
+                  VAGAS PEDIRIAM ISSO (0)
+                </span>
+              </div>
+            </div>
+            `;
+          }
 
           // Renderiza Ferramentas
           const toolsHTML = topic.tools.map(t => `
@@ -3043,7 +3347,7 @@
               </div>
               <div style="margin-left: 12px; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 6px; background: var(--color-111122); color: var(--color-94a3b8); border: 1px solid var(--color-1e1e3a); display: flex; align-items: center; gap: 6px;">
                 <i data-lucide="clock" style="width: 12px; height: 12px; color: var(--color-3b82f6);"></i>
-                Última vez atualizado em 20/05/2026 - 16:18
+                Última vez atualizado em 20/05/2026 - 17:10
               </div>
             </div>
             <button onclick="toggleTheme()" style="background:transparent; border:none; cursor:pointer; color:var(--color-94a3b8); display:flex; align-items:center; justify-content:center; padding: 8px;">

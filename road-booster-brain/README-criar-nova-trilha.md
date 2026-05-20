@@ -28,12 +28,13 @@ Sua tarefa é gerar o código JavaScript estático no formato exato que a aplica
      - `title`: Título chamativo (ex: "HTTP, HTTPS & Protocolos").
      - `tagline`: Uma frase de impacto que justifica o tema (ex: "Entender HTTP profundamente é o que separa o junior do senior").
      - `description`: Explicação técnica e aprofundada do conceito. **MUITO IMPORTANTE:** Seguindo os princípios do projeto, adicione ao final da descrição uma "Micro Solução Sugerida" ou "Evidência de Aprendizado" (ex: "Crie uma API simples e faça deploy para gerar um post no LinkedIn", ou um problema real isolado para resolver). Evite sugerir projetos gigantes.
-     - `tools`: Array com `{ name, why }` para Linguagens & Ferramentas.
-     - `sites`: Array com `{ label, url, type }` para Sites de Prática & Referência. Os tipos aceitos são "practice", "docs", "site".
-     - `resources`: Array com `{ label, url, type }` para Trilha de Estudo. Os tipos aceitos são "youtube", "course".
-5. **Integração com Vagas:**
+     - `tools`: Array com `{ name, why }` para a **Parte para Linguagens & Ferramentas**. Nunca deixe vazio.
+     - `sites`: Array com `{ label, url, type }` para a **Parte para Sites de Prática & Referência**. Nunca deixe vazio. Os tipos aceitos são "practice", "docs", "site".
+     - `resources`: Array com `{ label, url, type }` para a **Parte para Trilha de Estudo** (youtube ou algum site grátis). Nunca deixe vazio. Os tipos aceitos são "youtube", "course".
+5. **Integração com Vagas e a UI:**
    - A aplicação base possui uma variável `jobRoles` com vagas reais cadastradas.
-   - Ao gerar o código do tópico, o componente visual já conta com uma lógica de contagem e cruzamento de vagas ("Vagas compatíveis com esta stack"). Você não precisa injetar as vagas direto no tópico, mas deve garantir que as `tools` e o escopo da trilha façam sentido para que o algoritmo de *match* da aplicação (que busca palavras no `description` e `tools`) encontre as vagas corretamente.
+   - O componente visual já conta com uma lógica de contagem e cruzamento de vagas ("Vagas compatíveis com esta stack"). Você não precisa injetar as vagas direto no tópico, mas deve garantir que as `tools` e o escopo da trilha façam sentido para o algoritmo de *match*.
+   - **Regra Visual:** O sistema renderiza as vagas que já estão na parte de "Busca de vagas" no formato `"VAGAS PEDIRIAM ISSO (TOTAL X)"` se houver relação com o tema. Caso não haja vaga encontrada, o sistema manterá o espaço dela, mas falando `"VAGAS PEDIRIAM ISSO (0)"`. Você deve preencher bem os arrays de `tools` para maximizar as chances de match (ex: colocar 'Node.js', 'AWS', 'Python').
 
 ### REGRAS DE DESIGN E INJEÇÃO (HTML/CSS/JS):
 
