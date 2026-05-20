@@ -570,3 +570,31 @@ body.light-theme .ui-style-35 .ui-style-38,
 body.light-theme .ui-style-35 .ui-style-39 {
   color: #fff8f2 !important;
 }
+
+/* --- Splash Screen --- */
+#splash-screen {
+  position: fixed; inset: 0; background: var(--color-090916); z-index: 9999;
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
+  animation: fadeOutSplash 0.5s ease-in-out 2.5s forwards; pointer-events: none;
+}
+.splash-logo {
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+}
+.splash-svg { width: 80px; height: 80px; }
+.draw-circle { animation: drawCircle 1.5s ease-out forwards; }
+.draw-cross {
+  stroke-dasharray: 60; stroke-dashoffset: 60; animation: drawCross 1s ease-out 0.5s forwards;
+}
+.pop-dot {
+  transform: scale(0); transform-origin: center;
+  animation: popDot 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.2s forwards;
+}
+#splash-screen h2 {
+  color: var(--color-f8fafc); font-size: 24px; letter-spacing: 2px; margin: 0;
+  opacity: 0; animation: fadeInText 0.5s ease-out 1.5s forwards;
+}
+@keyframes fadeOutSplash { 0% { opacity: 1; visibility: visible; } 100% { opacity: 0; visibility: hidden; } }
+@keyframes drawCircle { to { stroke-dashoffset: 0; } }
+@keyframes drawCross { to { stroke-dashoffset: 0; } }
+@keyframes popDot { to { transform: scale(1); } }
+@keyframes fadeInText { to { opacity: 1; } }

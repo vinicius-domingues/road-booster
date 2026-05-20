@@ -2295,6 +2295,23 @@
       render();
     };
 
+    const AI_PROMPTS = {
+      trilha: "Aja como um Arquiteto de Software e atualize a trilha de estudos do meu projeto baseada na estrutura do arquivo road-booster-center/script.js.\\n\\nInstruções:\\n1. Leia a estrutura da variável backendPhases ou frontendPhases (ou extraRoadmaps para outras trilhas).\\n2. Adicione novos objetos na lista topics das fases, representando tecnologias modernas (ex: novos frameworks, novos conceitos arquiteturais).\\n3. Respeite estritamente a estrutura de objeto: { title, tagline, description, tools, sites, resources }.\\n4. Gere o código javascript pronto para eu substituir a fase correspondente.",
+      vagas: "Aja como um Recrutador Técnico e atualize a lista de vagas reais do meu projeto baseada na estrutura do arquivo road-booster-center/script.js.\\n\\nInstruções:\\n1. Leia a estrutura da variável jobRoles.\\n2. Busque na web (ou considere os dados que eu te enviar) 5 novas vagas recentes para desenvolvimento (Junior, Pleno, Senior) nos escopos 'backend', 'frontend' ou 'cloud'.\\n3. Respeite estritamente a estrutura de objeto: { scope, level, title, url, competencies }.\\n4. Foque em extrair as competências EXATAS da descrição da vaga.\\n5. Retorne a array jobRoles atualizada com os novos itens.",
+      tudo: "Aja como um Tech Lead e revise completamente a estrutura de dados do arquivo road-booster-center/script.js.\\n\\nInstruções de Atualização Completa:\\n1. Vagas (jobRoles): Identifique tendências recentes de mercado. Crie 3 novas vagas de alta demanda que não estão no array atual.\\n2. Trilha (phases / roadmaps): Baseado nas novas vagas incluídas no passo anterior, identifique se alguma tecnologia demandada está faltando na trilha atual.\\n3. Crie os novos tópicos (topics) correspondentes nas fases adequadas com seus tools, sites e resources.\\n4. Respeite o padrão de objetos já existente em ambas as variáveis.\\n5. Retorne os trechos de código exatos que eu devo substituir em script.js.",
+      linguagens: "Aja como um Engenheiro de Software Senior e atualize as linguagens e ferramentas do meu projeto baseadas na estrutura do arquivo road-booster-center/script.js.\\n\\nInstruções:\\n1. Verifique as ferramentas (tools) nos topics das variáveis backendPhases, frontendPhases e extraRoadmaps.\\n2. Identifique se houve o lançamento recente de alguma versão 'major' ou se alguma linguagem/framework importante foi descontinuada.\\n3. Adicione ou modifique o array tools (com name e why) refletindo o status atual do mercado.\\n4. Gere o código javascript atualizado com as substituições exatas para eu aplicar no arquivo.",
+      noticias: "Aja como um Curador de Tecnologia e adicione as notícias mais recentes do mercado ao meu projeto, com base no arquivo road-booster-center/script.js.\\n\\nInstruções:\\n1. Leia a estrutura do arquivo e da variável que armazena notícias (ou crie se necessário) e as fontes verificadas.\\n2. Busque 3 a 5 notícias recentes de grande impacto para Back-end, Front-end ou Cloud.\\n3. Extraia o título, resumo de 2 linhas, impacto na trilha e o link fonte.\\n4. Formate as notícias prontas em código HTML/JS (ou JSON) para eu colar no script.js.",
+      status: "Aja como um Mantenedor de Sistema e atualize a data de 'Última vez atualizado em' no arquivo road-booster-center/script.js.\\n\\nInstruções:\\n1. Busque no script.js onde o botão de status está renderizado (no header principal).\\n2. Atualize o texto que diz 'Última vez atualizado em...' para a data e hora atual (horário de Brasília).\\n3. Me retorne o trecho exato de código para eu substituir.",
+      metodologias: "Aja como um Psicólogo da Educação Tech e atualize a seção de Metodologias e Mindset baseada no arquivo road-booster-center/script.js.\\n\\nInstruções:\\n1. Busque no script.js a seção de Metodologias/Mindset (que contém cards como Spaced Repetition, Active Recall, Técnica Feynman, etc).\\n2. Adicione 2 novas metodologias comprovadas de aprendizado acelerado que não estejam listadas.\\n3. Utilize o formato de cards com ícone, título, descrição (job-competencies), metáfora e prática, seguindo o mesmo estilo HTML gerado no script.\\n4. Me retorne o trecho exato para eu incluir na lista de metodologias no script.js."
+    };
+
+    window.showUpdatePrompt = function(type) {
+      fetch('road-booster-brain/README-atualizar-' + type + '.md')
+        .then(res => res.text())
+        .then(text => alert("Copie e envie para a IA:\\n\\n" + text))
+        .catch(() => alert("Copie e envie para a IA:\\n\\n" + AI_PROMPTS[type]));
+    };
+
     // 3. LÓGICA DE RENDERIZAÇÃO PRINCIPAL
     function normalizeText(value) {
       return value
@@ -2733,9 +2750,45 @@
 
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
             
-            <div style="background: var(--color-0d0d1a); border: 1px solid var(--color-1e1e3a); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 12px; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='var(--color-111122)'" onmouseout="this.style.background='var(--color-0d0d1a)'">
+            <div onclick="showUpdatePrompt('trilha')" style="background: var(--color-0d0d1a); border: 1px solid var(--color-1e1e3a); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 12px; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='var(--color-111122)'" onmouseout="this.style.background='var(--color-0d0d1a)'">
               <div style="display: flex; align-items: center; gap: 12px; color: var(--color-3b82f6);">
                 <div style="width: 40px; height: 40px; border-radius: 10px; background: var(--color-3b82f622); display: flex; align-items: center; justify-content: center;">
+                  <i data-lucide="map" style="width: 20px; height: 20px;"></i>
+                </div>
+                <div>
+                  <h2 style="font-size: 16px; font-weight: 700; margin: 0; color: var(--color-f8fafc);">Atualizar Trilha</h2>
+                  <p style="font-size: 12px; color: var(--color-94a3b8); margin: 2px 0 0 0;">Incluir novas tecnologias e ferramentas.</p>
+                </div>
+              </div>
+            </div>
+
+            <div onclick="showUpdatePrompt('vagas')" style="background: var(--color-0d0d1a); border: 1px solid var(--color-1e1e3a); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 12px; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='var(--color-111122)'" onmouseout="this.style.background='var(--color-0d0d1a)'">
+              <div style="display: flex; align-items: center; gap: 12px; color: var(--color-f59e0b);">
+                <div style="width: 40px; height: 40px; border-radius: 10px; background: var(--color-f59e0b22); display: flex; align-items: center; justify-content: center;">
+                  <i data-lucide="briefcase" style="width: 20px; height: 20px;"></i>
+                </div>
+                <div>
+                  <h2 style="font-size: 16px; font-weight: 700; margin: 0; color: var(--color-f8fafc);">Atualizar Vagas</h2>
+                  <p style="font-size: 12px; color: var(--color-94a3b8); margin: 2px 0 0 0;">Analisar novas vagas do mercado.</p>
+                </div>
+              </div>
+            </div>
+
+            <div onclick="showUpdatePrompt('tudo')" style="background: var(--color-0d0d1a); border: 1px solid var(--color-1e1e3a); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 12px; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='var(--color-111122)'" onmouseout="this.style.background='var(--color-0d0d1a)'">
+              <div style="display: flex; align-items: center; gap: 12px; color: var(--color-a855f7);">
+                <div style="width: 40px; height: 40px; border-radius: 10px; background: var(--color-a855f722); display: flex; align-items: center; justify-content: center;">
+                  <i data-lucide="zap" style="width: 20px; height: 20px;"></i>
+                </div>
+                <div>
+                  <h2 style="font-size: 16px; font-weight: 700; margin: 0; color: var(--color-f8fafc);">Atualizar Tudo</h2>
+                  <p style="font-size: 12px; color: var(--color-94a3b8); margin: 2px 0 0 0;">Sincronizar trilhas e vagas com a IA.</p>
+                </div>
+              </div>
+            </div>
+
+            <div onclick="showUpdatePrompt('linguagens')" style="background: var(--color-0d0d1a); border: 1px solid var(--color-1e1e3a); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 12px; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='var(--color-111122)'" onmouseout="this.style.background='var(--color-0d0d1a)'">
+              <div style="display: flex; align-items: center; gap: 12px; color: var(--color-10b981);">
+                <div style="width: 40px; height: 40px; border-radius: 10px; background: var(--color-10b98122); display: flex; align-items: center; justify-content: center;">
                   <i data-lucide="code" style="width: 20px; height: 20px;"></i>
                 </div>
                 <div>
@@ -2745,14 +2798,26 @@
               </div>
             </div>
 
-            <div style="background: var(--color-0d0d1a); border: 1px solid var(--color-1e1e3a); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 12px; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='var(--color-111122)'" onmouseout="this.style.background='var(--color-0d0d1a)'">
-              <div style="display: flex; align-items: center; gap: 12px; color: var(--color-f59e0b);">
-                <div style="width: 40px; height: 40px; border-radius: 10px; background: var(--color-f59e0b22); display: flex; align-items: center; justify-content: center;">
+            <div onclick="showUpdatePrompt('noticias')" style="background: var(--color-0d0d1a); border: 1px solid var(--color-1e1e3a); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 12px; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='var(--color-111122)'" onmouseout="this.style.background='var(--color-0d0d1a)'">
+              <div style="display: flex; align-items: center; gap: 12px; color: var(--color-ef4444);">
+                <div style="width: 40px; height: 40px; border-radius: 10px; background: var(--color-ef444422); display: flex; align-items: center; justify-content: center;">
                   <i data-lucide="newspaper" style="width: 20px; height: 20px;"></i>
                 </div>
                 <div>
                   <h2 style="font-size: 16px; font-weight: 700; margin: 0; color: var(--color-f8fafc);">Atualizar Notícias</h2>
                   <p style="font-size: 12px; color: var(--color-94a3b8); margin: 2px 0 0 0;">Buscar artigos recentes no mercado tech.</p>
+                </div>
+              </div>
+            </div>
+
+            <div onclick="showUpdatePrompt('metodologias')" style="background: var(--color-0d0d1a); border: 1px solid var(--color-1e1e3a); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 12px; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='var(--color-111122)'" onmouseout="this.style.background='var(--color-0d0d1a)'">
+              <div style="display: flex; align-items: center; gap: 12px; color: var(--color-f97316);">
+                <div style="width: 40px; height: 40px; border-radius: 10px; background: var(--color-f9731622); display: flex; align-items: center; justify-content: center;">
+                  <i data-lucide="brain-circuit" style="width: 20px; height: 20px;"></i>
+                </div>
+                <div>
+                  <h2 style="font-size: 16px; font-weight: 700; margin: 0; color: var(--color-f8fafc);">Atualizar Metodologias</h2>
+                  <p style="font-size: 12px; color: var(--color-94a3b8); margin: 2px 0 0 0;">Incluir novas técnicas de aprendizado.</p>
                 </div>
               </div>
             </div>
@@ -2978,6 +3043,10 @@
               <div class="ui-style-120">
                 road-booster
               </div>
+              <button onclick="showUpdatePrompt('status')" style="margin-left: 12px; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 6px; background: var(--color-111122); color: var(--color-94a3b8); border: 1px solid var(--color-1e1e3a); cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.2s;" onmouseover="this.style.background='var(--color-1e1e3a)'; this.style.color='var(--color-f8fafc)';" onmouseout="this.style.background='var(--color-111122)'; this.style.color='var(--color-94a3b8)';">
+                <i data-lucide="clock" style="width: 12px; height: 12px; color: var(--color-3b82f6);"></i>
+                Última vez atualizado em 20/05/2026 - 11:30
+              </button>
             </div>
             <button onclick="toggleTheme()" style="background:transparent; border:none; cursor:pointer; color:var(--color-94a3b8); display:flex; align-items:center; justify-content:center; padding: 8px;">
               <i data-lucide="${theme === 'light' ? 'moon' : 'sun'}" style="width: 20px; height: 20px;"></i>
