@@ -2029,6 +2029,72 @@
       },
     ];
 
+    
+    const securityPhases = [
+      {
+        id: "fundamentos-seg", label: "01 · Fundamentos", color: "#dc2626", dim: "#1f080822", icon: "shield",
+        topics: [
+          {
+            title: "Redes e Protocolos", tagline: "Entenda a base da comunicação.", description: "TCP/IP, UDP, DNS, HTTP/HTTPS.", tools: [], sites: [], resources: []
+          },
+          {
+            title: "Criptografia Básica", tagline: "Proteção de dados em repouso e trânsito.", description: "Hashes, simétrica, assimétrica, TLS.", tools: [], sites: [], resources: []
+          }
+        ]
+      },
+      {
+        id: "owasp-seg", label: "02 · OWASP Top 10", color: "#f97316", dim: "#1c110822", icon: "alert-triangle",
+        topics: [
+          {
+            title: "Injeções e XSS", tagline: "As falhas mais comuns.", description: "SQLi, NoSQLi, Cross-Site Scripting.", tools: [], sites: [], resources: []
+          }
+        ]
+      }
+    ];
+
+    const biPhases = [
+      {
+        id: "fundamentos-bi", label: "01 · Fundamentos de Dados", color: "#f59e0b", dim: "#1c141022", icon: "bar-chart-3",
+        topics: [
+          {
+            title: "Modelagem Dimensional", tagline: "Star schema e Snowflake.", description: "Fatos, dimensões, granularidade.", tools: [], sites: [], resources: []
+          },
+          {
+            title: "ETL / ELT", tagline: "Movimentação de dados.", description: "Extração, transformação e carga.", tools: [], sites: [], resources: []
+          }
+        ]
+      }
+    ];
+
+    const startupPhases = [
+      {
+        id: "fundamentos-startup", label: "01 · Validação", color: "#a855f7", dim: "#1a0d2e22", icon: "rocket",
+        topics: [
+          {
+            title: "Lean Startup", tagline: "Construir, medir, aprender.", description: "MVP, pivotar, product-market fit.", tools: [], sites: [], resources: []
+          }
+        ]
+      }
+    ];
+
+    const softSkillsPhases = [
+      {
+        id: "fundamentos-soft", label: "01 · Comunicação", color: "#22c55e", dim: "#0d1f1222", icon: "messages-square",
+        topics: [
+          {
+            title: "Comunicação Assertiva", tagline: "Falar e ser entendido.", description: "Clareza, empatia, escuta ativa.", tools: [], sites: [], resources: []
+          }
+        ]
+      }
+    ];
+
+    const extraRoadmaps = {
+      "security": { id: "security", label: "Segurança", title: "Cyber Security", eyebrow: "Roadmap Segurança", description: "Proteja aplicações e infraestrutura.", icon: "shield", color: "#dc2626", phases: securityPhases },
+      "bi": { id: "bi", label: "BI", title: "Business Intelligence", eyebrow: "Roadmap BI", description: "Transforme dados em decisões.", icon: "bar-chart-3", color: "#f59e0b", phases: biPhases },
+      "startup": { id: "startup", label: "Startup e marketing", title: "Startup & Marketing", eyebrow: "Roadmap Startup", description: "Crie e escale negócios.", icon: "rocket", color: "#a855f7", phases: startupPhases },
+      "soft-skills": { id: "soft-skills", label: "Soft Skills", title: "Soft Skills", eyebrow: "Roadmap Soft Skills", description: "Habilidades comportamentais e comunicação.", icon: "messages-square", color: "#22c55e", phases: softSkillsPhases }
+    };
+
     const roadmaps = {
       backend: {
         id: "backend",
@@ -2063,17 +2129,19 @@
     ];
 
     const sideNavItems = [
-      { label: "Notícias", target: "news", icon: "newspaper" },
-      { label: "Vagas de interesse", target: "routes", icon: "briefcase-business" },
-      { label: "Arquitetura backend", target: "architecture", icon: "layers" },
-      { label: "Busca de vagas", target: "jobs", icon: "search" },
-      { label: "Rotas por escopo", target: "routes", icon: "map" },
-      { label: "Conteúdos de estudo", target: "study", icon: "book-open" },
-      { label: "Micro soluções LinkedIn", target: "linkedin", icon: "send" },
-      { label: "Banco JSON", target: "json-db", icon: "database" },
+      { label: "Busca de vagas", target: "routes", icon: "search" },
+      { label: "Trilha", target: "trail", icon: "route", hasSubmenu: true },
       { label: "Metodologias de estudo", target: "methods", icon: "graduation-cap" },
       { label: "Retroalimentação", target: "feedback", icon: "refresh-cw" },
-      { label: "Futuros módulos", target: "future", icon: "sparkles" },
+    ];
+
+    const trailSubItems = [
+      { id: "backend",    label: "Back-end",           icon: "server",           type: "roadmap" },
+      { id: "frontend",   label: "Front-end",          icon: "monitor-smartphone",type: "roadmap" },
+      { id: "security",   label: "Segurança",          icon: "shield",           type: "trail" },
+      { id: "bi",         label: "BI",                 icon: "bar-chart-3",      type: "trail" },
+      { id: "startup",    label: "Startup e marketing",icon: "rocket",           type: "trail" },
+      { id: "soft-skills",label: "Soft Skills",        icon: "messages-square",  type: "trail" },
     ];
 
     const jobRoles = [
@@ -2194,7 +2262,7 @@
         level: "senior",
         title: "[DevOps Cloud] Analista Sênior de Cloud DevOps",
         url: "https://atracaodetalentos.totvs.app/vempratotvs/9646/devops-cloud-analista-senior-de-cloud-devops",
-        competencies: [".NET Core", "C#", "bancos relacionais", "arquitetura", "cloud", "containers", "CI/CD", "Windows", "Linux", "redes", "segurança", "troubleshooting"]
+        competencies: [".NET Core", "C#", "bancos relacionais", "arquitetura", "cloud", "containers", "CI/CD", "Windows", "Linux", "redes", "segurança", "troubleshooting", "rastreabilidade", "LGPD", "UML", "C4"]
       },
       {
         scope: "cloud",
@@ -2231,6 +2299,10 @@
     let activePhase = 0;
     let expandedTopic = null;
     let activeView = "roadmap";
+    let sideNavVisible = true;
+    let trailSubmenuOpen = false;
+    let newsItems = []; // array de {title, summary, imageUrl, link}
+    let activeNewsModal = null;
 
     // Funções globais para eventos de clique
     window.setActiveRoadmap = function(roadmapId) {
@@ -2265,7 +2337,7 @@
       render();
     };
 
-    window.toggleTopic = function(index) {
+    window.toggleSideNav = function() { sideNavVisible = !sideNavVisible; render(); }; window.toggleTrailSubmenu = function() { trailSubmenuOpen = !trailSubmenuOpen; render(); }; window.selectTrailItem = function(id, type) { if (type === "roadmap") { setActiveRoadmap(id); return; } if (type === "view") { setModule(id, "view"); return; } activeView = id; expandedTopic = null; render(); }; window.openNewsModal = function(idx) { activeNewsModal = idx; render(); }; window.closeNewsModal = function() { activeNewsModal = null; render(); }; window.toggleTopic = function(index) {
       expandedTopic = expandedTopic === index ? null : index;
       render();
     };
@@ -2510,6 +2582,189 @@
       `).join('');
 
       // Renderização do HTML final no container #app
+      
+      let trailRoadmapHTML = "";
+      if (["security", "bi", "startup", "soft-skills"].includes(activeView)) {
+        const tr = extraRoadmaps[activeView];
+        const trPhases = tr.phases;
+        const currentPhaseIdx = Math.min(activePhase, trPhases.length - 1);
+        const trPhase = trPhases[currentPhaseIdx];
+        
+        const trTabsHTML = trPhases.map((p, i) => {
+          const active = i === currentPhaseIdx;
+          return `<button class="phase-tab" onclick="setActivePhase(${i})"
+            style="display: flex; align-items: center; gap: 7px; padding: 12px 14px;
+                   background: transparent; border: none; cursor: pointer;
+                   border-bottom: 2px solid ${active ? p.color : 'transparent'};
+                   color: ${active ? p.color : '#475569'};
+                   font-size: 12px; font-weight: ${active ? 600 : 400};
+                   white-space: nowrap; margin-bottom: -1px;">
+            <i data-lucide="${p.icon}" style="width: 14px; height: 14px;"></i>
+            ${p.label}
+          </button>`;
+        }).join('');
+
+        const trTopicsHTML = trPhase.topics.map((topic, ti) => {
+          const isOpen = expandedTopic === ti;
+          let toolsHTML = topic.tools && topic.tools.length ? topic.tools.map(t => `<div style="padding: 8px 10px; border-radius: 7px; background: #111122; border: 1px solid #1e1e3a;"><div style="font-size: 13px; font-weight: 600; color: #e2e8f0; margin-bottom: 3px;">${t.name}</div><div style="font-size: 11px; color: #64748b; line-height: 1.4;">${t.why||''}</div></div>`).join('') : '';
+          
+          let expandedContentHTML = isOpen ? `
+            <div style="border-top: 1px solid ${trPhase.color}22; padding: 1.25rem;">
+              <p style="margin: 0 0 1.25rem; font-size: 13px; color: #94a3b8; line-height: 1.8;">${topic.description}</p>
+              ${toolsHTML ? `<div style="margin-bottom: 1.25rem;"><div style="display: flex; align-items: center; gap: 6px; margin-bottom: 10px;"><i data-lucide="server" style="width: 13px; height: 13px; color: ${trPhase.color};"></i><span style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: ${trPhase.color}; text-transform: uppercase;">Linguagens & Ferramentas</span></div><div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px;">${toolsHTML}</div></div>` : ''}
+            </div>` : '';
+
+          return `<div style="border-radius: 10px; overflow: hidden; border: 1px solid ${isOpen ? trPhase.color + '55' : '#1e1e3a'}; transition: border-color 0.2s; background: #0d0d1a;">
+            <button onclick="toggleTopic(${ti})" style="width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; background: transparent; border: none; cursor: pointer; text-align: left; gap: 12px;">
+              <div style="flex: 1; min-width: 0;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <div style="width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; background: ${trPhase.color}; box-shadow: ${isOpen ? '0 0 8px ' + trPhase.color : 'none'}; transition: box-shadow 0.2s;"></div>
+                  <span style="font-size: 15px; font-weight: 600; color: #f1f5f9;">${topic.title}</span>
+                </div>
+                <p style="margin: 4px 0 0 16px; font-size: 12px; color: #64748b; line-height: 1.5;">${topic.tagline}</p>
+              </div>
+              <div style="color: #475569; flex-shrink: 0;"><i data-lucide="${isOpen ? 'chevron-up' : 'chevron-down'}" style="width: 16px; height: 16px;"></i></div>
+            </button>
+            ${expandedContentHTML}
+          </div>`;
+        }).join('');
+
+        const trDotsHTML = trPhases.map((p, i) => `<div onclick="setActivePhase(${i})" style="width: ${i === currentPhaseIdx ? 18 : 6}px; height: 6px; border-radius: 3px; background: ${i === currentPhaseIdx ? trPhase.color : '#1e1e3a'}; transition: all 0.3s; cursor: pointer;"></div>`).join('');
+
+        trailRoadmapHTML = `
+        <div style="background: linear-gradient(135deg, #0f0f1a 0%, #0a0a14 100%); border-bottom: 1px solid #1e1e3a; padding: 2rem 1.5rem 1.5rem;">
+          <div style="max-width: 960px; margin: 0 auto;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+              <i data-lucide="${tr.icon}" style="width: 22px; height: 22px; color: ${tr.color};"></i>
+              <span style="font-size: 12px; font-weight: 600; letter-spacing: 3px; color: ${tr.color}; text-transform: uppercase;">${tr.eyebrow}</span>
+            </div>
+            <h1 style="font-size: 26px; font-weight: 700; margin: 0 0 6px; color: #f8fafc; letter-spacing: -0.5px;">${tr.title}</h1>
+            <p style="margin: 0; font-size: 14px; color: #64748b; line-height: 1.6;">${tr.description}</p>
+          </div>
+        </div>
+        <div style="border-bottom: 1px solid #1e1e3a; background: #0a0a14; overflow-x: auto; -webkit-overflow-scrolling: touch;" class="nav-scroll">
+          <div style="display: flex; padding: 0 1.5rem; gap: 4px; min-width: max-content;">
+            ${trTabsHTML}
+          </div>
+        </div>
+        <div style="max-width: 960px; margin: 0 auto; padding: 1.5rem;">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; padding: 1rem 1.25rem; border-radius: 10px; background: ${trPhase.dim}; border: 1px solid ${trPhase.color}22;">
+            <div style="width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: ${trPhase.color}22; border: 1px solid ${trPhase.color}44;">
+              <i data-lucide="${trPhase.icon}" style="width: 18px; height: 18px; color: ${trPhase.color};"></i>
+            </div>
+            <div>
+              <div style="font-size: 13px; font-weight: 700; color: ${trPhase.color}; letter-spacing: 0.5px;">${trPhase.label.toUpperCase()}</div>
+              <div style="font-size: 12px; color: #64748b; margin-top: 1px;">${trPhase.topics.length} tópicos nesta fase</div>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            ${trTopicsHTML}
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-top: 2rem; gap: 10px;">
+            <button onclick="if(${currentPhaseIdx} > 0) setActivePhase(${currentPhaseIdx - 1})" ${currentPhaseIdx === 0 ? 'disabled' : ''} style="display: flex; align-items: center; gap: 6px; padding: 9px 16px; background: ${currentPhaseIdx === 0 ? '#111122' : '#1a1a2e'}; border: 1px solid #1e1e3a; border-radius: 8px; color: ${currentPhaseIdx === 0 ? '#334155' : '#94a3b8'}; font-size: 13px; font-weight: 500; cursor: ${currentPhaseIdx === 0 ? 'not-allowed' : 'pointer'};">← Fase anterior</button>
+            <div style="display: flex; gap: 4px; align-items: center;">${trDotsHTML}</div>
+            <button onclick="if(${currentPhaseIdx} < ${trPhases.length - 1}) setActivePhase(${currentPhaseIdx + 1})" ${currentPhaseIdx === trPhases.length - 1 ? 'disabled' : ''} style="display: flex; align-items: center; gap: 6px; padding: 9px 16px; background: ${currentPhaseIdx === trPhases.length - 1 ? '#111122' : trPhase.color + '22'}; border: 1px solid ${currentPhaseIdx === trPhases.length - 1 ? '#1e1e3a' : trPhase.color + '44'}; border-radius: 8px; color: ${currentPhaseIdx === trPhases.length - 1 ? '#334155' : trPhase.color}; font-size: 13px; font-weight: 500; cursor: ${currentPhaseIdx === trPhases.length - 1 ? 'not-allowed' : 'pointer'};">Próxima fase →</button>
+          </div>
+        </div>
+        `;
+      }
+
+      
+      const methodsContentHTML = `
+        <div style="max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem;">
+          <div style="margin-bottom: 2rem;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+              <i data-lucide="graduation-cap" style="width: 22px; height: 22px; color: #a855f7;"></i>
+              <span style="font-size: 12px; font-weight: 600; letter-spacing: 3px; color: #a855f7; text-transform: uppercase;">
+                Aprender a Aprender
+              </span>
+            </div>
+            <h1 style="font-size: 26px; font-weight: 700; margin: 0 0 8px; color: #f8fafc; letter-spacing: -0.5px;">
+              Metodologias de Estudo Modernas
+            </h1>
+            <p style="margin: 0; font-size: 14px; color: #94a3b8; line-height: 1.6;">
+              O mercado de tecnologia muda rápido. Mais importante do que <i>o que</i> você estuda, é <i>como</i> você estuda e retém o conhecimento.
+            </p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+            
+            <div style="background: #0d0d1a; border: 1px solid #1e1e3a; border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 12px;">
+              <div style="display: flex; align-items: center; gap: 8px; color: #22c55e;">
+                <i data-lucide="brain-circuit" style="width: 20px; height: 20px;"></i>
+                <h2 style="font-size: 16px; font-weight: 700; margin: 0;">Spaced Repetition (Repetição Espaçada)</h2>
+              </div>
+              <p style="font-size: 13px; color: #94a3b8; line-height: 1.6; margin: 0;">
+                Nosso cérebro descarta informações que não usamos. A repetição espaçada força você a relembrar um conceito logo antes de esquecê-lo, fortalecendo a conexão neural.
+              </p>
+              <div style="background: #111122; border-left: 3px solid #22c55e; padding: 10px 12px; border-radius: 0 8px 8px 0;">
+                <p style="font-size: 12px; color: #cbd5e1; margin: 0; font-style: italic;">
+                  <strong>Metáfora:</strong> É como regar uma planta. Se regar todo dia, a raiz apodrece. Se regar no tempo certo, ela cresce forte.
+                </p>
+              </div>
+              <div style="font-size: 12px; color: #64748b; margin-top: auto;">
+                <strong>Prática:</strong> Use ferramentas como Anki ou Notion. Revise o que aprendeu 1 dia, 3 dias, 1 semana e 1 mês depois.
+              </div>
+            </div>
+
+            <div style="background: #0d0d1a; border: 1px solid #1e1e3a; border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 12px;">
+              <div style="display: flex; align-items: center; gap: 8px; color: #3b82f6;">
+                <i data-lucide="zap" style="width: 20px; height: 20px;"></i>
+                <h2 style="font-size: 16px; font-weight: 700; margin: 0;">Active Recall (Evocação Ativa)</h2>
+              </div>
+              <p style="font-size: 13px; color: #94a3b8; line-height: 1.6; margin: 0;">
+                Ler e grifar texto é passivo. Evocação ativa significa forçar seu cérebro a "puxar" a informação de dentro para fora, testando-se constantemente.
+              </p>
+              <div style="background: #111122; border-left: 3px solid #3b82f6; padding: 10px 12px; border-radius: 0 8px 8px 0;">
+                <p style="font-size: 12px; color: #cbd5e1; margin: 0; font-style: italic;">
+                  <strong>Metáfora:</strong> Ler um livro sobre musculação não cria músculos. Levantar o peso (testar seu cérebro) sim.
+                </p>
+              </div>
+              <div style="font-size: 12px; color: #64748b; margin-top: auto;">
+                <strong>Prática:</strong> Feche o tutorial e tente escrever o código sozinho. Se travar, anote onde errou e só então olhe a resposta.
+              </div>
+            </div>
+
+            <div style="background: #0d0d1a; border: 1px solid #1e1e3a; border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 12px;">
+              <div style="display: flex; align-items: center; gap: 8px; color: #f59e0b;">
+                <i data-lucide="users" style="width: 20px; height: 20px;"></i>
+                <h2 style="font-size: 16px; font-weight: 700; margin: 0;">Técnica Feynman</h2>
+              </div>
+              <p style="font-size: 13px; color: #94a3b8; line-height: 1.6; margin: 0;">
+                Você só entende realmente um conceito quando consegue explicá-lo de forma simples. Se usar jargões demais, é porque tem lacunas no aprendizado.
+              </p>
+              <div style="background: #111122; border-left: 3px solid #f59e0b; padding: 10px 12px; border-radius: 0 8px 8px 0;">
+                <p style="font-size: 12px; color: #cbd5e1; margin: 0; font-style: italic;">
+                  <strong>Metáfora:</strong> Tente explicar o que é uma API para sua avó. Se ela entender, você dominou o conceito.
+                </p>
+              </div>
+              <div style="font-size: 12px; color: #64748b; margin-top: auto;">
+                <strong>Prática:</strong> Escreva artigos, responda em fóruns, grave vídeos ou apresente o que aprendeu para colegas.
+              </div>
+            </div>
+
+            <div style="background: #0d0d1a; border: 1px solid #1e1e3a; border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 12px;">
+              <div style="display: flex; align-items: center; gap: 8px; color: #ef4444;">
+                <i data-lucide="blocks" style="width: 20px; height: 20px;"></i>
+                <h2 style="font-size: 16px; font-weight: 700; margin: 0;">Just-in-Time Learning</h2>
+              </div>
+              <p style="font-size: 13px; color: #94a3b8; line-height: 1.6; margin: 0;">
+                Aprender apenas o que você precisa, no momento em que precisa, para resolver um problema real. Evita o "tutorial hell".
+              </p>
+              <div style="background: #111122; border-left: 3px solid #ef4444; padding: 10px 12px; border-radius: 0 8px 8px 0;">
+                <p style="font-size: 12px; color: #cbd5e1; margin: 0; font-style: italic;">
+                  <strong>Metáfora:</strong> Você não precisa memorizar o manual inteiro do carro para dirigir. Você aprende onde fica a buzina quando precisa buzinar.
+                </p>
+              </div>
+              <div style="font-size: 12px; color: #64748b; margin-top: auto;">
+                <strong>Prática:</strong> Escolha um projeto. Aprenda a ferramenta X apenas quando ela for o único caminho para avançar.
+              </div>
+            </div>
+
+          </div>
+        </div>
+      `;
+
       const routesContentHTML = `
         <div style="max-width: 1120px; margin: 0 auto; padding: 1.5rem;">
           <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; padding: 1rem 1.25rem; border-radius: 10px;
@@ -2644,27 +2899,57 @@
         </div>
       `;
 
-      const sideNavHTML = `
+      const sideNavHTML = sideNavVisible ? `
         <aside style="position: fixed; left: 0; top: 57px; bottom: 0; width: 232px; overflow-y: auto;
                       background: #080810; border-right: 1px solid #1e1e3a; padding: 1rem 0.85rem; z-index: 20;">
           <div style="font-size: 10px; font-weight: 800; letter-spacing: 1.8px; color: #475569; text-transform: uppercase; margin: 0 0 10px 4px;">
             Navegação
           </div>
           <nav style="display: flex; flex-direction: column; gap: 6px;">
-            ${sideNavItems.map(item => `
-              <button onclick="${item.target === 'routes' ? "setModule('routes', 'view')" : "setActiveView('" + item.target + "')"}"
-                style="display: flex; align-items: center; gap: 9px; width: 100%; padding: 9px 10px; border-radius: 8px;
-                       background: ${activeView === item.target ? '#0e2933' : 'transparent'};
-                       border: 1px solid ${activeView === item.target ? '#155e75' : 'transparent'};
-                       color: ${activeView === item.target ? '#67e8f9' : '#94a3b8'};
-                       cursor: pointer; text-align: left; font-size: 12px; font-weight: 600;">
-                <i data-lucide="${item.icon}" style="width: 14px; height: 14px; flex-shrink: 0;"></i>
+            ${sideNavItems.map(item => {
+              if (item.hasSubmenu) {
+                const subOpen = trailSubmenuOpen;
+                const subHTML = subOpen ? `<div style="margin-top:4px;display:flex;flex-direction:column;gap:4px;padding-left:10px;">
+                  ${trailSubItems.map(sub => `
+                    <button onclick="selectTrailItem('${sub.id}','${sub.type}')"
+                      style="display:flex;align-items:center;gap:8px;width:100%;padding:7px 10px;border-radius:7px;
+                             background:${activeView===sub.id?'#0e2933':'transparent'};
+                             border:1px solid ${activeView===sub.id?'#155e75':'transparent'};
+                             color:${activeView===sub.id?'#67e8f9':'#94a3b8'};
+                             cursor:pointer;text-align:left;font-size:12px;font-weight:600;">
+                      <i data-lucide="${sub.icon}" style="width:13px;height:13px;flex-shrink:0;"></i>
+                      <span>${sub.label}</span>
+                    </button>
+                  `).join('')}
+                </div>` : '';
+                return `<button onclick="toggleTrailSubmenu()"
+                  style="display:flex;align-items:center;justify-content:space-between;width:100%;padding:9px 10px;border-radius:8px;
+                         background:${trailSubmenuOpen?'#0e2933':'transparent'};
+                         border:1px solid ${trailSubmenuOpen?'#155e75':'transparent'};
+                         color:${trailSubmenuOpen?'#67e8f9':'#94a3b8'};
+                         cursor:pointer;text-align:left;font-size:12px;font-weight:600;">
+                  <span style="display:flex;align-items:center;gap:9px;">
+                    <i data-lucide="${item.icon}" style="width:14px;height:14px;flex-shrink:0;"></i>
+                    ${item.label}
+                  </span>
+                  <i data-lucide="${trailSubmenuOpen?'chevron-up':'chevron-down'}" style="width:12px;height:12px;"></i>
+                </button>${subHTML}`;
+              }
+              const isActive = activeView === item.target;
+              return `<button onclick="${item.target === 'routes' ? "setModule('routes','view')" : "setActiveView('" + item.target + "')"}"
+                style="display:flex;align-items:center;gap:9px;width:100%;padding:9px 10px;border-radius:8px;
+                       background:${isActive?'#0e2933':'transparent'};
+                       border:1px solid ${isActive?'#155e75':'transparent'};
+                       color:${isActive?'#67e8f9':'#94a3b8'};
+                       cursor:pointer;text-align:left;font-size:12px;font-weight:600;">
+                <i data-lucide="${item.icon}" style="width:14px;height:14px;flex-shrink:0;"></i>
                 <span>${item.label}</span>
-              </button>
-            `).join('')}
+              </button>`;
+            }).join('')}
           </nav>
         </aside>
-      `;
+      ` : '';
+
 
       const sidePlaceholderHTML = `
         <div style="max-width: 960px; margin: 0 auto; padding: 1.5rem;">
@@ -2690,7 +2975,12 @@
         <div>
           <header style="position: sticky; top: 0; z-index: 30; height: 57px; display: flex; align-items: center;
                          background: rgba(8, 8, 16, 0.94); backdrop-filter: blur(12px); border-bottom: 1px solid #1e1e3a;">
-            <div style="width: 232px; padding-left: 1rem; display: flex; align-items: center; gap: 9px;">
+            <div style="padding-left: 1rem; display: flex; align-items: center; gap: 9px;">
+              <button onclick="toggleSideNav()" title="${sideNavVisible?'Esconder menu':'Mostrar menu'}"
+                style="width:30px;height:30px;border-radius:7px;border:1px solid #1e1e3a;background:#111122;
+                       display:flex;align-items:center;justify-content:center;cursor:pointer;color:#94a3b8;">
+                <i data-lucide="${sideNavVisible?'panel-left-close':'panel-left-open'}" style="width:16px;height:16px;"></i>
+              </button>
               <div style="width: 24px; height: 24px; border-radius: 7px; background: #06b6d422; border: 1px solid #06b6d466; display: flex; align-items: center; justify-content: center;">
                 <i data-lucide="sparkles" style="width: 14px; height: 14px; color: #67e8f9;"></i>
               </div>
@@ -2700,7 +2990,38 @@
             </div>
           </header>
           ${sideNavHTML}
-          <main style="margin-left: 232px;">
+          <main style="margin-left: ${sideNavVisible ? 232 : 0}px; transition: margin-left 0.2s;">
+          <div style="background:#090916;border-bottom:1px solid #1e1e3a;padding:1rem 1.5rem;display:flex;align-items:center;gap:10px;min-height:64px;">
+            <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
+              <i data-lucide="newspaper" style="width:16px;height:16px;color:#f59e0b;"></i>
+              <span style="font-size:11px;font-weight:800;letter-spacing:1.5px;color:#f59e0b;text-transform:uppercase;">Notícias</span>
+            </div>
+            <div style="width:1px;height:24px;background:#1e1e3a;flex-shrink:0;"></div>
+            ${newsItems.length === 0 ? '<span style="font-size:12px;color:#334155;font-style:italic;">Nenhuma notícia no momento.</span>' :
+              '<div style="display:flex;gap:8px;overflow-x:auto;flex:1;">' +
+              newsItems.map((n,i) => `<button onclick="openNewsModal(${i})" style="display:flex;align-items:center;gap:7px;padding:5px 10px;border-radius:6px;background:#111122;border:1px solid #f59e0b44;color:#fbbf24;cursor:pointer;font-size:12px;font-weight:600;white-space:nowrap;flex-shrink:0;">
+                <i data-lucide="bell" style="width:12px;height:12px;"></i>${n.title}
+              </button>`).join('') + '</div>'
+            }
+          </div>
+          ${activeNewsModal !== null && newsItems[activeNewsModal] ? `
+          <div onclick="if(event.target===this)closeNewsModal()" style="position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:1.5rem;">
+            <div style="background:#0d0d1a;border:1px solid #1e1e3a;border-radius:14px;max-width:560px;width:100%;overflow:hidden;">
+              ${newsItems[activeNewsModal].imageUrl ? `<img src="${newsItems[activeNewsModal].imageUrl}" style="width:100%;max-height:220px;object-fit:cover;">` : ''}
+              <div style="padding:1.25rem;">
+                <div style="font-size:18px;font-weight:700;color:#f8fafc;margin-bottom:8px;">${newsItems[activeNewsModal].title}</div>
+                <p style="font-size:13px;color:#94a3b8;line-height:1.7;margin:0 0 1rem;">${newsItems[activeNewsModal].summary}</p>
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;">
+                  <a href="${newsItems[activeNewsModal].link}" target="_blank" rel="noopener noreferrer"
+                     style="display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:#f59e0b22;border:1px solid #f59e0b44;color:#fbbf24;font-size:13px;font-weight:600;text-decoration:none;">
+                    <i data-lucide="external-link" style="width:13px;height:13px;"></i> Ver no site
+                  </a>
+                  <button onclick="closeNewsModal()" style="padding:8px 16px;border-radius:8px;background:#1e1e3a;border:none;color:#94a3b8;cursor:pointer;font-size:13px;">Fechar</button>
+                </div>
+              </div>
+            </div>
+          </div>` : ''}
+          ${activeView === 'roadmap' ? `
           <div style="background: linear-gradient(135deg, #0f0f1a 0%, #0a0a14 100%); border-bottom: 1px solid #1e1e3a; padding: 2rem 1.5rem 1.5rem;">
             <div style="max-width: 960px; margin: 0 auto;">
               <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
@@ -2715,34 +3036,20 @@
               <p style="margin: 0; font-size: 14px; color: #64748b; line-height: 1.6;">
                 ${roadmap.description}
               </p>
-              <div style="display: flex; gap: 8px; margin-top: 1.25rem; flex-wrap: wrap;">
-                ${moduleTabs.map(item => {
-                  const active = item.id === activeModuleId;
-                  return `
-                    <button onclick="setModule('${item.id}', '${item.type}')"
-                      style="display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 8px;
-                             border: 1px solid ${active ? item.color + '88' : '#1e1e3a'};
-                             background: ${active ? item.color + '22' : '#111122'};
-                             color: ${active ? item.color : '#94a3b8'};
-                             cursor: pointer; font-size: 13px; font-weight: 700;">
-                      <i data-lucide="${item.icon}" style="width: 15px; height: 15px;"></i>
-                      ${item.label}
-                    </button>
-                  `;
-                }).join('')}
-              </div>
             </div>
-          </div>
+          </div>` : ''}
 
+          ${activeView === 'roadmap' ? `
           <div style="border-bottom: 1px solid #1e1e3a; background: #0a0a14; overflow-x: auto; -webkit-overflow-scrolling: touch;" class="nav-scroll">
             <div style="display: flex; padding: 0 1.5rem; gap: 4px; min-width: max-content;">
               ${tabsHTML}
             </div>
-          </div>
+          </div>` : ''}
 
           ${activeView === "routes" ? routesContentHTML : ""}
-          ${activeView !== "roadmap" && activeView !== "routes" ? placeholderContentHTML : ""}
-          ${sideNavItems.some(item => item.target === activeView) && activeView !== "routes" ? sidePlaceholderHTML : ""}
+          ${(activeView !== "roadmap" && activeView !== "routes" && activeView !== "methods" && !["security","bi","startup","soft-skills"].includes(activeView)) ? placeholderContentHTML : ""}
+          ${activeView === "methods" ? methodsContentHTML : ""}
+          ${["security","bi","startup","soft-skills"].includes(activeView) ? trailRoadmapHTML : ""}
 
           ${activeView === "roadmap" ? roadmapContentHTML : ""}
           </main>
