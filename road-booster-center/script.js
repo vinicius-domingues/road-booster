@@ -2255,7 +2255,6 @@
     };
 
     window.setActivePhase = function(index) {
-      activeView = "roadmap";
       activePhase = index;
       expandedTopic = null;
       render();
