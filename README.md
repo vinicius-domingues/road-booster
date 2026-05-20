@@ -1,8 +1,8 @@
 # Objetivo do projeto
 
-Criar uma aplicação em **HTML puro** para mapear, manter e evoluir uma trilha de estudos backend baseada em arquitetura real, mercado de trabalho e atualização contínua.
+Criar uma aplicação IA Driven em **HTML puro** para mapear, manter e evoluir uma trilha de estudos backend baseada em arquitetura real, mercado de trabalho e atualização contínua.
 
-A ideia central é que a própria IA consiga dar manutenção rápida no arquivo, sem depender de framework, build, banco externo ou infraestrutura complexa. O projeto deve ser simples de abrir, editar, versionar e evoluir.
+A ideia central é que a própria IA consiga dar manutenção rápida no arquivo, sem depender de framework, build, banco externo ou infraestrutura complexa. O projeto deve ser simples de abrir, editar, versionar e evoluir. Ela será ativa pos componentes de javascript da nossa plataforma, idealizadas por um readme de cada seção.
 
 ## Visão geral
 
