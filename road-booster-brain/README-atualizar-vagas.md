@@ -19,7 +19,7 @@ Sua tarefa é gerar o código JavaScript populando a variável global `jobRoles`
 2. **Quantidade e Diversidade:**
    - Crie no mínimo 10 vagas reais retiradas destas plataformas.
    - Distribua os níveis de experiência no campo `level`: "estagiario", "junior", "pleno" e "senior".
-   - Cubra os escopos no campo `scope` correspondentes às trilhas existentes (ex: "backend", "frontend", "cloud", "security", "mobile", etc).
+   - Cubra os escopos no campo `scope` correspondentes às trilhas existentes. **De acordo com o README principal**, dê preferência para os seguintes nichos de arquitetura e tecnologia: **Backend geral, TOTVS, .NET/C#, Protheus, ADVPL, Cloud, DevOps e Integrações**.
 2. **Estrutura do Objeto (Obrigatória):**
    - Cada item do array `jobRoles` deve ter exatamente o seguinte formato:
 ```javascript

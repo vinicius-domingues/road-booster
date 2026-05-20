@@ -27,7 +27,7 @@ Sua tarefa é gerar o código JavaScript estático no formato exato que a aplica
    - **Campos obrigatórios de cada tópico:**
      - `title`: Título chamativo (ex: "HTTP, HTTPS & Protocolos").
      - `tagline`: Uma frase de impacto que justifica o tema (ex: "Entender HTTP profundamente é o que separa o junior do senior").
-     - `description`: Explicação técnica e aprofundada do conceito.
+     - `description`: Explicação técnica e aprofundada do conceito. **MUITO IMPORTANTE:** Seguindo os princípios do projeto, adicione ao final da descrição uma "Micro Solução Sugerida" ou "Evidência de Aprendizado" (ex: "Crie uma API simples e faça deploy para gerar um post no LinkedIn", ou um problema real isolado para resolver). Evite sugerir projetos gigantes.
      - `tools`: Array com `{ name, why }` para Linguagens & Ferramentas.
      - `sites`: Array com `{ label, url, type }` para Sites de Prática & Referência. Os tipos aceitos são "practice", "docs", "site".
      - `resources`: Array com `{ label, url, type }` para Trilha de Estudo. Os tipos aceitos são "youtube", "course".

@@ -16,7 +16,8 @@ O repositório está limpo. Sua tarefa é popular a variável global `newsItems`
 
 1. **Quantidade e Impacto:**
    - Crie exatamente entre 5 a 8 notícias.
-   - O foco deve ser o impacto na carreira do desenvolvedor (ex: "React 19 é lançado: o que muda para o Frontend?", "Nova IA do Google escreve código mais rápido").
+   - **Fontes Ideais e Verificadas:** O foco das buscas deve ocorrer nas seguintes fontes ou similares, conforme o README do projeto: Microsoft DevBlogs, AWS Blog, Google Cloud Blog, CNCF, Docker Blog, Kubernetes Blog, InfoQ, The New Stack, Stack Overflow Developer Survey, GitHub Octoverse, etc.
+   - **Objetivo da Notícia:** O foco deve ser o impacto na carreira do desenvolvedor, para ajudá-lo a entender tendências, evitar estudar tecnologias em queda e descobrir mudanças importantes no mercado (ex: "React 19 é lançado: o que muda para o Frontend?", "Nova IA do Google escreve código mais rápido").
 2. **Estrutura do Objeto:**
    - O array `newsItems` deve seguir exatamente este formato:
 ```javascript

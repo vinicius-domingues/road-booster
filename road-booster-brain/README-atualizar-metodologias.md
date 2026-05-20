@@ -17,6 +17,7 @@ Sua tarefa é gerar o código HTML exato que será injetado na variável `method
 1. **Quantidade e Qualidade:**
    - Crie entre 3 a 5 metodologias comprovadas (ex: Spaced Repetition, Active Recall, Técnica Feynman, Just-in-Time Learning, Pomodoro para Codificação).
    - O foco deve ser o estudo de *tecnologia e programação*, não apenas estudo genérico.
+   - **Alinhamento com o Projeto:** Conforme as diretrizes do projeto (README principal), os métodos devem ter como objetivo: evitar estudo raso, conciliar múltiplas tecnologias, criar uma rotina sustentável e ensinar a transformar o estudo em produção pública (ex: gerar um post no LinkedIn após aplicar a técnica). Se fizer sentido, sugira um "Ciclo Semanal" de estudos.
 2. **Estrutura HTML (Obrigatória):**
    - Você DEVE seguir ESTRITAMENTE o design do sistema. Cada metodologia deve ser um card `.job-card`.
    - O código HTML gerado deve seguir esse template exato:
